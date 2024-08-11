@@ -16,7 +16,7 @@ body {
 
 @layer utilities {
   .min-h-calc {
-    min-height: calc(100vh - 1rem);
+    height: calc(100vh - 1rem);
   }
 }
 

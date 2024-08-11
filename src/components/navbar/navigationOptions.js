@@ -1,14 +1,14 @@
- import { IoLanguageOutline } from "react-icons/io5";
+import { translate } from "@/utils/translate";
+import { IoLanguageOutline } from "react-icons/io5";
 import { WiMoonAltFirstQuarter } from "react-icons/wi";
 
-export const navigationOptions = [
+export const navigationOptions = (language) => [
   {
-    title: "Theme",
+    title: translate("theme", language),
     logo: <WiMoonAltFirstQuarter />,
   },
   {
-    title: "Language",
+    title: translate("language", language),
     logo: <IoLanguageOutline />,
   },
 ];
-

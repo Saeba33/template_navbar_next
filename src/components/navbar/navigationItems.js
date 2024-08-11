@@ -8,29 +8,28 @@ import {
 
 export const navigationItems = [
   {
-    title: "Home",
+    titleKey: "homeTitle",
     logo: <FaHome />,
-    description: "Go to home",
+    descriptionKey: "homeDescription",
   },
   {
-    title: "About",
+    titleKey: "aboutTitle",
     logo: <FaInfoCircle />,
-    description: "Go to about",
+    descriptionKey: "aboutDescription",
   },
   {
-    title: "Services",
+    titleKey: "servicesTitle",
     logo: <FaTools />,
-    description: "Go to services",
+    descriptionKey: "servicesDescription",
   },
   {
-    title: "Contact",
+    titleKey: "contactTitle",
     logo: <FaEnvelope />,
-    description: "Go to contact",
+    descriptionKey: "contactDescription",
   },
   {
-    title: "Help",
+    titleKey: "helpTitle",
     logo: <FaQuestionCircle />,
-    description: "Go to help",
+    descriptionKey: "helpDescription",
   },
 ];
-

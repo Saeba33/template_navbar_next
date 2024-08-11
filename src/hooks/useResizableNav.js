@@ -1,35 +1,30 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
-export function useResizableNav(
-  initialWidthRatio = 1 / 6,
-  maxWidthRatio = 0.5
-) {
-  const minWidth = window.innerWidth * initialWidthRatio;
-  const maxWidth = window.innerWidth * maxWidthRatio;
-  const [width, setWidth] = useState(minWidth);
+const getInitialWidth = () => {
+  const screenWidth = window.innerWidth;
+  return Math.max(screenWidth / 6, 200);
+};
+
+const MIN_WIDTH_PERCENTAGE = 1 / 6;
+const MAX_WIDTH_PERCENTAGE = 0.5;
+
+export function useResizableNav() {
+  const [width, setWidth] = useState(getInitialWidth());
   const navRef = useRef(null);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth((prevWidth) =>
-        Math.max(minWidth, Math.min(prevWidth, maxWidth))
-      );
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, [minWidth, maxWidth]);
-
   const handleMouseDown = (e) => {
-    e.preventDefault();
     const startX = e.clientX;
-    const startWidth = navRef.current.offsetWidth;
+    const startWidth = navRef.current ? navRef.current.offsetWidth : width;
 
     const handleMouseMove = (e) => {
-      const newWidth = startWidth + (e.clientX - startX);
-      setWidth(Math.max(minWidth, Math.min(newWidth, maxWidth)));
+      const screenWidth = window.innerWidth;
+      const minWidth = screenWidth * MIN_WIDTH_PERCENTAGE;
+      const maxWidth = screenWidth * MAX_WIDTH_PERCENTAGE;
+      const newWidth = Math.max(
+        Math.min(startWidth + e.clientX - startX, maxWidth),
+        minWidth
+      );
+      setWidth(newWidth);
     };
 
     const handleMouseUp = () => {
